@@ -8,13 +8,13 @@ var ready = function() {
       columns: 1
     },{
       width: '992px',
-      columns: 4
+      columns: 3
     },{
       width: '1200px',
-      columns: 5
+      columns: 4
     },{
       width: '',
-      columns: 6
+      columns: 5
     }]
 
     function add(a, b) { return a + b; }    
