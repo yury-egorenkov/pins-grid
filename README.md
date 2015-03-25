@@ -69,3 +69,10 @@ If you whant to change it init pins grid after document ready.
 EXAMPLES AND OTHER LEARNING RESOURCES
 -------------------------------------
 [DEMO](http://pinsgrid.lander.io/)
+
+
+## License
+The MIT License (MIT). See license text in [LICENSE](LICENSE).
+
+## Contacts
+  Feel free to write me: yury.egorenkov@gmail.com
