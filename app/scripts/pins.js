@@ -70,13 +70,14 @@ var ready = function() {
     }
 
     function initSettings(settings) {
-      for ( var i in settings ) {      
+      var s = settings;
+      for ( var i in s ) {      
         if (i == 0) {
           addMaxWidthMedia(s[i].width, s[i].columns);
           continue;
         }
 
-        if (i == gridSettings.length - 1) {
+        if (i == s.length - 1) {
           addMinWidthMedia(s[i-1].width, s[i].columns);
           continue;
         }
