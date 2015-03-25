@@ -1,7 +1,7 @@
 pins-grid.js
 ============
 
-This is small library which implements Pinterest layout. Filling the grid goes from left to right. Count of columns can be customized in config for each resolution. Columns adaptive changes on resize.
+This is small library which implements Pinterest layout. Filling the grid goes from left to right. Count of columns can be customized in config for each resolution. Columns adaptive changes on resize. Image can be at up or down of pin.
 
 WHAT IN RESULT
 --------------
@@ -9,7 +9,7 @@ WHAT IN RESULT
 You can fast and easy create Pinterest like layout on your site.
 Like this.
 
-![alt tag](https://raw.github.com/yury-egorenkov/pins-grid/branch/master/pinsgrid.jpg)
+![alt tag](https://raw.githubusercontent.com/yury-egorenkov/pins-grid/master/app/images/pinsgrid.jpg)
 
 HOW TO USE IT
 -------------
