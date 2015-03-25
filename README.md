@@ -17,8 +17,8 @@ HOW TO USE IT
 All you need to use is in dist directory.
 
 ```html
-  <link href="dist/scripts/pins.css" media="all" rel="stylesheet">
-  <script src="dist/scripts/pins.js" type="text/javascript" ></script>
+  <link href="dist/scripts/pins.min.css" media="all" rel="stylesheet">
+  <script src="dist/scripts/pins.min.js" type="text/javascript" ></script>
 ```
 
 ```html
@@ -40,6 +40,8 @@ All you need to use is in dist directory.
     ...
   </div>  
 ```
+
+Image img tag should always be wrapped by image div. It can be placed anywhere at top, bottom, middle. Other div classes can be any.
 
 That's it. By default you will have 5, 4, 3, 1 columns on standard lg, md, sm, xs resolutions from bootstrap. 
 
