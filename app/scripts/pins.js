@@ -133,7 +133,7 @@ var ready = function() {
     }
 
     function rearrangePinsDelay() {
-      setTimeout(rearrangePins, 700);
+      setInterval(rearrangePins, 1000);
     }
 
     $( window ).resize(function() {
