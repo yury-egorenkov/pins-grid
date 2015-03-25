@@ -4,7 +4,7 @@ var ready = function() {
     var classSwitch = true;
     var inited = false;
 
-    gridSettings = [{
+    var defaultSettings = [{
       width: '768px',
       columns: 1
     },{
@@ -69,9 +69,8 @@ var ready = function() {
       addMediaQueryAction(query, columns);
     }
 
-    function initSettings() {
-      var s = gridSettings;
-      for ( var i in s ) {      
+    function initSettings(settings) {
+      for ( var i in settings ) {      
         if (i == 0) {
           addMaxWidthMedia(s[i].width, s[i].columns);
           continue;
@@ -140,15 +139,15 @@ var ready = function() {
       rearrangePins();
     });
 
-    window.pinGrid = function() {
+    window.pinGrid = function(settings) {
       inited = true;
-      initSettings();
+      initSettings(settings);
       rearrangePinsDelay();
     }
 
     setTimeout(function() {
       if (!inited) {
-        pinGrid();
+        pinGrid(defaultSettings);
       }
     }, 300);
 
