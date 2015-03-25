@@ -84,16 +84,16 @@ $pinMargin: 15;
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
-// @media (min-width: $screen-sm-min) {
-//   @include pins-grid(4, $pinMargin);
-// }
+@media (min-width: $screen-sm-min) {
+  // @include pins-grid(4, $pinMargin);
+}
 
 /* Medium devices (desktops, 992px and up) */
-// @media (min-width: $screen-md-min) {
-//   @include pins-grid(6, $pinMargin);
-// }
+@media (min-width: $screen-md-min) {
+  // @include pins-grid(6, $pinMargin);
+}
 
 /* Large devices (large desktops, 1200px and up) */
-// @media (min-width: $screen-lg-min) {
-//   @include pins-grid(12, $pinMargin);
-// }
+@media (min-width: $screen-lg-min) {
+  // @include pins-grid(12, $pinMargin);
+}
