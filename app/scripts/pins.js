@@ -2,6 +2,7 @@ var ready = function() {
 
     var marginTop = 15;
     var classSwitch = true;
+    var inited = false;
 
     gridSettings = [{
       width: '768px',
@@ -68,20 +69,23 @@ var ready = function() {
       addMediaQueryAction(query, columns);
     }
 
-    var s = gridSettings;
-    for ( var i in s ) {      
-      if (i == 0) {
-        addMaxWidthMedia(s[i].width, s[i].columns);
-        continue;
-      }
+    function initSettings() {
+      var s = gridSettings;
+      for ( var i in s ) {      
+        if (i == 0) {
+          addMaxWidthMedia(s[i].width, s[i].columns);
+          continue;
+        }
 
-      if (i == gridSettings.length - 1) {
-        addMinWidthMedia(s[i-1].width, s[i].columns);
-        continue;
-      }
+        if (i == gridSettings.length - 1) {
+          addMinWidthMedia(s[i-1].width, s[i].columns);
+          continue;
+        }
 
-      addMinMaxWidthMedia(s[i-1].width, s[i].width, s[i].columns);
+        addMinMaxWidthMedia(s[i-1].width, s[i].width, s[i].columns);
+      }      
     }
+    
     
     function previousN(el, sel, n) {
       var prev = $(el).prev(sel);
@@ -136,7 +140,17 @@ var ready = function() {
       rearrangePins();
     });
 
-    rearrangePins();
+    window.pinGrid = function() {
+      inited = true;
+      initSettings();
+      rearrangePinsDelay();
+    }
+
+    setTimeout(function() {
+      if (!inited) {
+        pinGrid();
+      }
+    }, 300);
 
 };
 

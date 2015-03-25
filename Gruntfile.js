@@ -19,7 +19,8 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'sample',
+    lib: 'dist'
   };
 
   // Define the configuration for all the tasks
@@ -27,6 +28,25 @@ module.exports = function (grunt) {
 
     // Project settings
     config: config,
+
+    // Metadata
+    pkg: grunt.file.readJSON("package.json"),
+    banner:
+    "\n" +
+    "/*\n" +
+     " * -------------------------------------------------------\n" +
+     " * Project: <%= pkg.title %>\n" +
+     " * Version: <%= pkg.version %>\n" +
+     " *\n" +
+     " * Author:  <%= pkg.author.name %>\n" +
+     " * Site:     <%= pkg.author.url %>\n" +
+     " * Contact: <%= pkg.author.email %>\n" +
+     " *\n" +
+     " *\n" +
+     " * Copyright (c) <%= grunt.template.today(\"yyyy\") %> <%= pkg.author.name %>\n" +
+     " * -------------------------------------------------------\n" +
+     " */\n" +
+     "\n",    
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -118,7 +138,8 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= config.dist %>/*',
-            '!<%= config.dist %>/.git*'
+            '!<%= config.dist %>/.git*',
+            '<%= config.lib %>/*'
           ]
         }]
       },
@@ -161,6 +182,12 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>/styles',
           src: ['*.{scss,sass}'],
           dest: '.tmp/styles',
+          ext: '.css'
+        },{
+          expand: true,
+          cwd: '<%= config.app %>/styles',
+          src: ['pins.{scss,sass}'],
+          dest: '<%= config.lib %>/styles',
           ext: '.css'
         }]
       },
@@ -285,28 +312,40 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/scripts/scripts.js': [
-    //         '<%= config.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+    cssmin: {
+      options: {
+        mangle: false,
+        banner: "<%= banner %>"
+      },      
+      dist: {
+        files: {
+          '<%= config.dist %>/styles/main.css': ['.tmp/styles/{,*/}*.css', '<%= config.app %>/styles/{,*/}*.css'],
+          '<%= config.lib %>/styles/pins.min.css': ['.tmp/styles/pins.css']
+        }
+      }
+    },
+    uglify: {
+      options: {
+        mangle: false,
+        banner: "<%= banner %>"
+      },   
+      dist: {
+        files: {
+         '<%= config.dist %>/scripts/scripts.js': ['<%= config.dist %>/scripts/scripts.js'],
+         '<%= config.lib %>/scripts/pins.min.js': ['<%= config.app %>/scripts/pins.js']
+        },
+      }      
+    },
     // concat: {
     //   dist: {}
     // },
+
+    remove: {
+      options: {
+        trace: true
+      },
+      fileList: ['<%= config.lib %>/styles/pins.css.map']
+    },   
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -331,6 +370,13 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= config.dist %>'
+        },
+        {
+          expand: true,
+          dot: true,          
+          cwd: '<%= config.app %>',
+          dest: '<%= config.lib %>',
+          src: 'scripts/pins.js'          
         }]
       },
       styles: {
@@ -339,7 +385,7 @@ module.exports = function (grunt) {
         cwd: '<%= config.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      }
+      },
     },
 
     // Run some tasks in parallel to speed up build process
@@ -411,7 +457,8 @@ module.exports = function (grunt) {
     'copy:dist',
     'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'remove'
   ]);
 
   grunt.registerTask('default', [
