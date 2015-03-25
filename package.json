@@ -1,17 +1,17 @@
 {
   "name": "pinsgrid",
   "version": "0.1.0",
-  "title": "YourLibrary",
-  "homepage": "http://chris.enytc.com",
-  "description": "A JavaScript Library",
+  "title": "Pins Grid",
+  "homepage": "https://github.com/yury-egorenkov/pins-grid",
+  "description": "This is small library which implements Pinterest layout. Filling the grid goes from left to right. Count of columns can be customized in config for each resolution. Columns adaptive changes on resize. Image can be at up or down of pin.",
   "author": {
-    "name": "Christopher EnyTC",
-    "url": "http://chris.enytc.com",
-    "email": "chrisenytc@gmail.com"
+    "name": "Yury Egorenkov",
+    "url": "http://ru.linkedin.com/in/yuryegorenkov",
+    "email": "yury.egorenkov@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisenytc/generator-library.git"
+    "url": "https://github.com/yury-egorenkov/pins-grid"
   },
   "keywords": [
     "vpl",
@@ -19,12 +19,12 @@
     "library"
   ],
   "bugs": {
-    "url": "https://github.com/chrisenytc/generator-library/issues"
+    "url": "https://github.com/yury-egorenkov/pins-grid/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/chrisenytc/generator-library/blob/master/LICENSE"
+      "url": "https://github.com/yury-egorenkov/pins-grid/blob/master/LICENSE"
     }
   ],
   "devDependencies": {

@@ -66,3 +66,4 @@ If you whant to change it init pins grid after document ready.
 
 EXAMPLES AND OTHER LEARNING RESOURCES
 -------------------------------------
+[DEMO](http://pinsgrid.lander.io/)

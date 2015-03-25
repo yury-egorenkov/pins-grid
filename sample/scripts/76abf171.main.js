@@ -1,15 +1,15 @@
 
 /*
  * -------------------------------------------------------
- * Project: YourLibrary
+ * Project: Pins Grid
  * Version: 0.1.0
  *
- * Author:  Christopher EnyTC
- * Site:     http://chris.enytc.com
- * Contact: chrisenytc@gmail.com
+ * Author:  Yury Egorenkov
+ * Site:     http://ru.linkedin.com/in/yuryegorenkov
+ * Contact: yury.egorenkov@gmail.com
  *
  *
- * Copyright (c) 2015 Christopher EnyTC
+ * Copyright (c) 2015 Yury Egorenkov
  * -------------------------------------------------------
  */
 
