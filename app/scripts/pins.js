@@ -1,41 +1,54 @@
+'use strict';
+
 var ready = function() {
+
+    var inited = false;
 
     var marginTop = 15;
     var classSwitch = true;
-    var inited = false;
     var imagePlaced = false;
+    var zoom = 1;
 
-    var defaultSettings = [{
-      width: '768px',
-      columns: 1
-    },{
-      width: '992px',
-      columns: 3
-    },{
-      width: '1200px',
-      columns: 4
-    },{
-      width: '',
-      columns: 5
-    }]
+    var settings;
 
-    function add(a, b) { return a + b; }    
+    var defaultSettings = {
+      imagePlaced: false,
+      classSwitch: true,
+      zoomable: true,
+      resolutions: [{
+          width: '768px',
+          columns: 1
+        },{
+          width: '992px',
+          columns: 3
+        },{
+          width: '1200px',
+          columns: 4
+        },{
+          width: '',
+          columns: 5
+        }]
+    };
+
+    function add(a, b) { return a + b; }
 
     var pinColumns = 1;
 
     function removeClassByWildcard(el, wildcard) {
       $(el).removeClass(function (index, css) {
-          var regex = new RegExp("(^|\\s)" + wildcard + "\\S+", "g");
+          var regex = new RegExp('(^|\\s)' + wildcard + '\\S+', 'g');
           return (css.match (regex) || []).join(' ');
         });
     }
 
     function setColumns(columns) {
-      pinColumns = columns;
+      pinColumns = columns + zoom;
+      pinColumns = pinColumns < 1 ? 1 : pinColumns;
+      console.log(pinColumns);
 
       if (classSwitch) {
         removeClassByWildcard('.pins-grid', 'pins-grid-');
-        $('.pins-grid').addClass('pins-grid-' + columns);        
+        $('.pins-grid').addClass('pins-grid-' + pinColumns);        
       }
     }
 
@@ -72,18 +85,21 @@ var ready = function() {
 
     function initSettings(settings) {
       var s = settings;
-      for ( var i in s ) {      
+
+      for ( var i in s ) {     
+        var columns = s[i].columns;
+        
         if (i == 0) {
-          addMaxWidthMedia(s[i].width, s[i].columns);
+          addMaxWidthMedia(s[i].width, columns);
           continue;
         }
 
         if (i == s.length - 1) {
-          addMinWidthMedia(s[i-1].width, s[i].columns);
+          addMinWidthMedia(s[i-1].width, columns);
           continue;
         }
 
-        addMinMaxWidthMedia(s[i-1].width, s[i].width, s[i].columns);
+        addMinMaxWidthMedia(s[i-1].width, s[i].width, columns);
       }      
     }
     
@@ -123,7 +139,7 @@ var ready = function() {
     function rearrangePins() {
       $('.pin:visible').each(function (i, el) {
         var heightCalculated = calculateHeightOfPreviousItemsInSameColumn(i);
-        var height = pinColumns == 1 ? 0 : heightCalculated;
+        var height = pinColumns === 1 ? 0 : heightCalculated;
         translatePin(el, height);
       });
 
@@ -148,9 +164,25 @@ var ready = function() {
       rearrangePins();
     });
 
-    window.pinGrid = function(settings) {
+    window.pinGrid = function pinGrid(settings) {
       inited = true;
-      initSettings(settings);
+      classSwitch = settings.classSwitch;
+      imagePlaced = settings.imagePlaced;
+
+      initSettings(settings.resolutions);
+      rearrangePinsDelay();
+
+      if (settings.zoomable) {
+        $('.pins-grid-controls').css('display', 'block');
+        $('.zoom-in').on('click', function() { pinGrid.zoom(-1); });
+        $('.zoom-out').on('click', function() { pinGrid.zoom(+1); });
+      }
+
+    }
+
+    window.pinGrid.zoom = function(newZoom) {
+      zoom = newZoom;
+      setColumns(pinColumns);
       rearrangePinsDelay();
     }
 

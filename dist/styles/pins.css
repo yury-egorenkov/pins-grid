@@ -1108,5 +1108,27 @@
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 /* Small devices (tablets, 768px and up) */
+.pins-grid-controls {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  transform: translateZ(0); }
+
+.zoom-in, .zoom-out {
+  background-color: gray;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 8px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  font-size: 24px;
+  line-height: 24px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5); }
+  .zoom-in:not(:first-child), .zoom-out:not(:first-child) {
+    margin-top: 10px; }
 
 /*# sourceMappingURL=pins.css.map */
