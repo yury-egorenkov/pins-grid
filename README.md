@@ -86,6 +86,8 @@ just add following code to your html page and change zoomable value in config to
   </div>
 ```
 
+Don't forget add [awesome font](http://fortawesome.github.io/Font-Awesome/) if you want use fa-search-*.
+
 Predefined image size
 ---------------------
 
