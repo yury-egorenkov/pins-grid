@@ -49,21 +49,24 @@ If you whant to change it init pins grid after document ready.
 
 ```js
   $(document).ready(function() {
-    pinGrid([
-      {
-        width: '768px',
-        columns: 1
-      },{
-        width: '992px',
-        columns: 3
-      },{
-        width: '1200px',
-        columns: 4
-      },{
-        width: '',
-        columns: 5
-      }]);
-  });
+    pinGrid({
+      imagePlaced: false,
+      classSwitch: true,
+      zoomable: true,
+      resolutions: [{
+          width: '768px',
+          columns: 1
+        },{
+          width: '992px',
+          columns: 3
+        },{
+          width: '1200px',
+          columns: 4
+        },{
+          width: '',
+          columns: 5
+        }]
+    });
 ```
 
 EXAMPLES AND OTHER LEARNING RESOURCES
