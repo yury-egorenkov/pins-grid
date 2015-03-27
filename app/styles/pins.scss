@@ -15,7 +15,7 @@ $pinMargin: 15;
     transition: opacity 1.5s ease;
     opacity: 0;
 
-    max-width: 300px;
+    // max-width: 300px;
     margin: 10px auto;
     border-radius: 6px;
 }
@@ -44,6 +44,15 @@ $pinMargin: 15;
       width: 100%;   
       vertical-align: middle;
     }
+  }
+
+  .image-placed {
+    @extend .image;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }    
   }
 
   & :first-child img {

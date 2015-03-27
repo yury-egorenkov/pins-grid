@@ -10,7 +10,6 @@
   background: linear-gradient(45deg, #FFF, #F9F9F9);
   transition: opacity 1.5s ease;
   opacity: 0;
-  max-width: 300px;
   margin: 10px auto;
   border-radius: 6px; }
 
@@ -24,13 +23,17 @@
 .pin > *:not(.image) {
   color: #777;
   padding: 5px 12px 6px; }
-.pin .image {
+.pin .image, .pin .image-placed {
   text-align: center;
   position: relative;
   width: 100%; }
-  .pin .image img {
+  .pin .image img, .pin .image-placed img {
     width: 100%;
     vertical-align: middle; }
+.pin .image-placed img {
+  position: absolute;
+  top: 0;
+  left: 0; }
 .pin :first-child img {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px; }

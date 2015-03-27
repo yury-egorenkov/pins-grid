@@ -3,6 +3,7 @@ var ready = function() {
     var marginTop = 15;
     var classSwitch = true;
     var inited = false;
+    var imagePlaced = false;
 
     var defaultSettings = [{
       width: '768px',
@@ -133,7 +134,14 @@ var ready = function() {
     }
 
     function rearrangePinsDelay() {
-      setInterval(rearrangePins, 1000);
+      var delay = 1000;
+
+      if (imagePlaced) {
+        setTimeout(rearrangePins, delay);  
+        return;
+      }
+
+      setInterval(rearrangePins, delay);
     }
 
     $( window ).resize(function() {
