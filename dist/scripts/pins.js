@@ -44,7 +44,6 @@ var ready = function() {
     function setColumns(columns) {
       pinColumns = columns + zoom;
       pinColumns = pinColumns < 1 ? 1 : pinColumns;
-      console.log(pinColumns);
 
       if (classSwitch) {
         removeClassByWildcard('.pins-grid', 'pins-grid-');

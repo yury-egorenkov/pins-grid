@@ -120,16 +120,17 @@ $radius: 6px;
 
 %pins-grid-control {
   background-color: gray;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background-color: #fff;
   padding: 8px;  
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
   font-size: 24px;
-  line-height: 24px;
+  line-height: 32px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.5);
+  text-align: center;
   
   &:not(:first-child) {
     margin-top: 10px;
