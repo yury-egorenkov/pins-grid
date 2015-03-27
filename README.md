@@ -52,7 +52,7 @@ If you whant to change it init pins grid after document ready.
     pinGrid({
       imagePlaced: false,
       classSwitch: true,
-      zoomable: true,
+      zoomable: false,
       resolutions: [{
           width: '768px',
           columns: 1
@@ -68,6 +68,47 @@ If you whant to change it init pins grid after document ready.
         }]
     });
 ```
+
+Zooming
+--------
+
+If you want change columns count dynamicly like zoom in - zoom out,
+just add following code to your html page and change zoomable value in config to true.
+
+```html
+  <div class="pins-grid-controls">
+    <div class="zoom-in">
+      <span class="fa fa-search-plus"></span>
+    </div>
+    <div class="zoom-out">
+      <span class="fa fa-search-minus"></span>
+    </div>
+  </div>
+```
+
+Predefined image size
+---------------------
+
+Because before loading image impossible detect height of block, to 
+prevent breach of pins order rearrange executed periodically. But it
+degrades performance. If you know proportions of image when page 
+generate on the server, you can set image size like this and set imagePlaced = true in settings. In the padding-bottom you shoul set (widht/height * 100) of image.
+You also can set background-color.
+
+```html
+    <div class="pin">
+      <div class="image-placed" style="padding-bottom: 147%; background-color: green;">
+        <img src="images/image2.jpg"/>
+      </div>
+      <div class="description">
+        Sample image
+      </div>
+      <div class="credits">
+        Sample credits
+      </div>
+    </div>
+```
+
 
 EXAMPLES AND OTHER LEARNING RESOURCES
 -------------------------------------
