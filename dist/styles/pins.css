@@ -34,10 +34,10 @@
   position: absolute;
   top: 0;
   left: 0; }
-.pin :first-child img {
+.pin > div:first-child, .pin :first-child img {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px; }
-.pin :last-child img {
+.pin > div:last-child, .pin :last-child img {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px; }
 

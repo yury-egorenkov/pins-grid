@@ -1,4 +1,5 @@
 $pinMargin: 15;
+$radius: 6px;
 
 .pins-grid {
     width: 100%;
@@ -55,14 +56,16 @@ $pinMargin: 15;
     }    
   }
 
+  & > div:first-child, 
   & :first-child img {
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;    
   }
 
+  & > div:last-child, 
   & :last-child img {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
   }
 }
 
