@@ -19,6 +19,8 @@ $radius: 6px;
     // max-width: 300px;
     margin: 10px auto;
     border-radius: 6px;
+
+    z-index: -1;
 }
 
 .pin p {
@@ -44,6 +46,7 @@ $radius: 6px;
     img {
       width: 100%;   
       vertical-align: middle;
+      opacity: 0;
     }
   }
 

@@ -27,7 +27,7 @@ All you need to use is in dist directory.
 
     <div class="pin">
       <div class="image">
-        <img src="images/image1.jpg"/>
+        <img data-src="images/image1.jpg"/>
       </div>
       <div class="description">
         Sample image
@@ -45,12 +45,11 @@ Image img tag should always be wrapped by image div. It can be placed anywhere a
 
 That's it. By default you will have 5, 4, 3, 1 columns on standard lg, md, sm, xs resolutions from bootstrap. 
 
-If you whant to change it init pins grid after document ready.   
+If you whant to change it init pins grid after document ready.
 
 ```js
   $(document).ready(function() {
     pinGrid({
-      imagePlaced: false,
       classSwitch: true,
       zoomable: false,
       resolutions: [{
@@ -87,29 +86,6 @@ just add following code to your html page and change zoomable value in config to
 ```
 
 Don't forget add [awesome font](http://fortawesome.github.io/Font-Awesome/) if you want use fa-search-*.
-
-Predefined image size
----------------------
-
-Because before loading image impossible detect height of block, to 
-prevent breach of pins order rearrange executed periodically. But it
-degrades performance. If you know proportions of image when page 
-generate on the server, you can set image size like this and set imagePlaced = true in settings. In the padding-bottom you shoul set (widht/height * 100) of image.
-You also can set background-color.
-
-```html
-    <div class="pin">
-      <div class="image-placed" style="padding-bottom: 147%; background-color: green;">
-        <img src="images/image2.jpg"/>
-      </div>
-      <div class="description">
-        Sample image
-      </div>
-      <div class="credits">
-        Sample credits
-      </div>
-    </div>
-```
 
 
 EXAMPLES AND OTHER LEARNING RESOURCES
