@@ -6,13 +6,11 @@ var ready = function() {
 
     var marginTop = 15;
     var classSwitch = true;
-    var imagePlaced = false;
-    var zoom = 1;
+    var zoom = 0;
 
     var settings;
 
     var defaultSettings = {
-      imagePlaced: false,
       classSwitch: true,
       zoomable: true,
       resolutions: [{
@@ -103,15 +101,15 @@ var ready = function() {
     }
     
     
-    function previousN(el, sel, n) {
-      var prev = $(el).prev(sel);
-      if (prev) {
+    function previousN(el, n) {
+      var prev = $(el).prev();
+      if (prev.length > 0) {
         for(var i = 1; i < n; i++) {
-          prev = prev.prev(sel);
+          prev = prev.prev();
         }
         return prev;
       }
-      return null;
+      return [];
     }
 
     window.getSameItems = function getSameItems(array, column, index) {
@@ -123,41 +121,103 @@ var ready = function() {
     }
 
     function calculateHeightOfPreviousItemsInSameColumn(index) {
-      return getSameItems($('.pin'), pinColumns, index)
+      return getSameItems($('.pins-grid .pin'), pinColumns, index)
         .map(function(d) { return $(d).height() + marginTop; })
         .reduce(add, 0);
     }
 
     function translatePin(el, height) {
-        $(el).css({'transform': 'translate(0, '+ height +'px)'});
-        setTimeout(function() {
-          $(el).css({'opacity': '1'})
-        }, 500);      
+        $(el).css({'transform': 'translate(0, '+ height +'px)'});     
     }
 
+    function rearrangePin(el) {
+      var gridTop = $('.pins-grid').offset().top,
+          gridPadding = $('.pins-grid').css('padding-top').replace(/[^-\d\.]/g, '');
+      var prev = previousN(el, pinColumns);
+
+      var height = 0;
+
+      if (prev.length > 0) {
+        height = prev.offset().top + prev.height() + marginTop - gridTop - gridPadding;
+      } 
+
+      var height = pinColumns === 1 ? 0 : height;
+
+      translatePin(el, height);
+
+      var last = $('.pins-grid .pin').last();
+      $('.pins-grid').css('height', last.offset().top + last.height());
+    }
+
+    window.rearrangePin = rearrangePin;
+
     function rearrangePins() {
-      $('.pin:visible').each(function (i, el) {
-        var heightCalculated = calculateHeightOfPreviousItemsInSameColumn(i);
-        var height = pinColumns === 1 ? 0 : heightCalculated;
-        translatePin(el, height);
+      $('.pins-grid .pin:visible').each(function (i, el) {
+        rearrangePin(el);        
       });
 
-      var pins = $('.pin');
-      var totalHeight = calculateHeightOfPreviousItemsInSameColumn(pins.length);
-      totalHeight = totalHeight + pins.last().height();
-      pins.last().parent().css('height', totalHeight);
+      // var pins = $('.pins-grid .pin');
+      // var totalHeight = calculateHeightOfPreviousItemsInSameColumn(pins.length);
+      // totalHeight = totalHeight + pins.last().height();
+      // pins.last().parent().css('height', totalHeight);
     }
 
     function rearrangePinsDelay() {
-      var delay = 1000;
+      setTimeout(rearrangePins, 1000);  
+    }
 
-      if (imagePlaced) {
-        setTimeout(rearrangePins, delay);  
+    var killImageTimeout = null;    
+
+    $('.pins-grid img').on('load', function() {
+      var image, img, pin, ratio;
+
+      img = $(this);
+      image = new Image();
+      image.src = img.attr("src");
+      pin = img.closest('.pin');
+
+      if (image.naturalWidth < 300) {
+        removePin(img);
         return;
       }
+      
+      ratio = 1.0 * image.naturalHeight / image.naturalWidth * 100;
+      img.closest('.image').css('padding-bottom', ratio + '%');
+      
+      rearrangePin(pin);
+      
+      pin.css('z-index', '0');
 
-      setInterval(rearrangePins, delay);
+      img.css('opacity', '1');
+      pin.css('opacity', '1');
+
+      loadPinImage();
+    });
+
+    function removePin(img) {
+      var pin = $(img).closest('.pin');
+      pin.remove();
+      loadPinImage();      
     }
+
+    function loadPinImage() {      
+      clearTimeout(killImageTimeout);
+
+      $('.pins-grid img[data-src]').slice(0, 1).each(function(i, d) {
+        
+        $(d).error(function() {
+          removePin(d);
+        });
+        
+        $(d).attr('src', $(d).attr('data-src'));
+        $(d).removeAttr('data-src');
+
+        killImageTimeout = setTimeout(function() {
+          removePin(d);
+        }, 5000);
+
+      });
+    };
 
     $( window ).resize(function() {
       rearrangePins();
@@ -166,7 +226,6 @@ var ready = function() {
     window.pinGrid = function pinGrid(settings) {
       inited = true;
       classSwitch = settings.classSwitch;
-      imagePlaced = settings.imagePlaced;
 
       initSettings(settings.resolutions);
       rearrangePinsDelay();
@@ -177,6 +236,7 @@ var ready = function() {
         $('.zoom-out').on('click', function() { pinGrid.zoom(+1); });
       }
 
+      loadPinImage();
     }
 
     window.pinGrid.zoom = function(newZoom) {
@@ -195,3 +255,6 @@ var ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+
+

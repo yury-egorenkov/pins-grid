@@ -43,20 +43,14 @@ $radius: 6px;
     text-align: center;
     position: relative;
     width: 100%;    
-    img {
+    img {      
       width: 100%;   
       vertical-align: middle;
       opacity: 0;
-    }
-  }
-
-  .image-placed {
-    @extend .image;
-    img {
       position: absolute;
       top: 0;
-      left: 0;
-    }    
+      left: 0;      
+    }
   }
 
   & > div:first-child, 

@@ -170,7 +170,7 @@ var ready = function() {
 
     $('.pins-grid img').on('load', function() {
       var image, img, pin, ratio;
-      
+
       img = $(this);
       image = new Image();
       image.src = img.attr("src");
@@ -181,8 +181,8 @@ var ready = function() {
         return;
       }
       
-      ratio = 1.0 * image.naturalHeight / image.naturalWidth * 100 - 2;
-      img.closest('.image-placed').css('padding-bottom', ratio + '%');
+      ratio = 1.0 * image.naturalHeight / image.naturalWidth * 100;
+      img.closest('.image').css('padding-bottom', ratio + '%');
       
       rearrangePin(pin);
       
@@ -235,6 +235,7 @@ var ready = function() {
         $('.zoom-in').on('click', function() { pinGrid.zoom(-1); });
         $('.zoom-out').on('click', function() { pinGrid.zoom(+1); });
       }
+
       loadPinImage();
     }
 
