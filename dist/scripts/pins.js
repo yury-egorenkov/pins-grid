@@ -53,7 +53,7 @@ var ready = function() {
       media.addListener(function(changed) {
         if (changed.matches) { 
           setColumns(columns);
-          rearrangePinsDelay(); 
+          rearrangePins(); 
       }});        
     }
 
@@ -149,8 +149,6 @@ var ready = function() {
       $('.pins-grid').css('height', last.offset().top + last.height());
     }
 
-    window.rearrangePin = rearrangePin;
-
     function rearrangePins() {
       $('.pins-grid .pin:visible').each(function (i, el) {
         rearrangePin(el);        
@@ -160,10 +158,6 @@ var ready = function() {
       // var totalHeight = calculateHeightOfPreviousItemsInSameColumn(pins.length);
       // totalHeight = totalHeight + pins.last().height();
       // pins.last().parent().css('height', totalHeight);
-    }
-
-    function rearrangePinsDelay() {
-      setTimeout(rearrangePins, 1000);  
     }
 
     var killImageTimeout = null;    
@@ -228,7 +222,6 @@ var ready = function() {
       classSwitch = settings.classSwitch;
 
       initSettings(settings.resolutions);
-      rearrangePinsDelay();
 
       if (settings.zoomable) {
         $('.pins-grid-controls').css('display', 'block');
@@ -242,7 +235,7 @@ var ready = function() {
     window.pinGrid.zoom = function(newZoom) {
       zoom = newZoom;
       setColumns(pinColumns);
-      rearrangePinsDelay();
+      rearrangePins();
     }
 
     setTimeout(function() {
