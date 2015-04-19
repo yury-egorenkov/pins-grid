@@ -145,8 +145,9 @@ var ready = function() {
 
       translatePin(el, height);
 
+      var globalOffset = $('.pins-grid').offset().top
       var last = $('.pins-grid .pin').last();
-      $('.pins-grid').css('height', last.offset().top + last.height());
+      $('.pins-grid').css('height', last.offset().top + last.height() - globalOffset);
     }
 
     function rearrangePins() {
