@@ -45,7 +45,7 @@ Image img tag should always be wrapped by image div. It can be placed anywhere a
 
 That's it. By default you will have 5, 4, 3, 1 columns on standard lg, md, sm, xs resolutions from bootstrap. 
 
-If you whant to change it init pins grid after document ready.
+If you want to change it, init pins grid after document ready.
 
 ```js
   $(document).ready(function() {
