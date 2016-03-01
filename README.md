@@ -90,7 +90,7 @@ Don't forget add [awesome font](http://fortawesome.github.io/Font-Awesome/) if y
 
 EXAMPLES AND OTHER LEARNING RESOURCES
 -------------------------------------
-[DEMO](http://pinsgrid.lander.io/)
+[DEMO](http://pinsgrid.yury.co/)
 
 
 ## License
